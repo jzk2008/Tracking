@@ -1,6 +1,6 @@
 <?php
 
-namespace Tracking;
+namespace SeetoLight\Tracking\Tracking;
 
 class Webhook
 {
@@ -9,6 +9,10 @@ class Webhook
     public $requestJson;
     public $requestArr;
 
+    /**
+     * @param string $verifyEmail
+     * @return false|mixed|string
+     */
     public function get($verifyEmail = "")
     {
         $requestJson = file_get_contents("php://input");
@@ -25,6 +29,10 @@ class Webhook
         return $this->requestJson;
     }
 
+    /**
+     * @param $verifyEmail
+     * @return bool
+     */
     public function verify($verifyEmail)
     {
         $verifyInfo = isset($this->requestArr["verifyInfo"]) ? $this->requestArr["verifyInfo"] : [];
@@ -35,6 +43,6 @@ class Webhook
             || empty($signature)
         ) return false;
         $result = hash_hmac("sha256", $timeStr, $verifyEmail);
-        return strcmp($result, $signature) == 0 ? true : false;
+        return strcmp($result, $signature) == 0;
     }
 }

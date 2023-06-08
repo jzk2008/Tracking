@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tracking;
+namespace SeetoLight\Tracking\Tracking;
 
 
 interface ApiInterface

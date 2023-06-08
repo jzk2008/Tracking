@@ -1,6 +1,6 @@
 <?php
 
-namespace Tracking;
+namespace SeetoLight\Tracking\Tracking;
 
 trait Request
 {
@@ -59,6 +59,11 @@ trait Request
     # @var boolean The header to be used for requests.
     public $isHeader = false;
 
+    /**
+     * @param $data
+     * @param $keys
+     * @return mixed
+     */
     protected function filter_data($data, $keys)
     {
         if (count($data) < count($data, COUNT_RECURSIVE)) {
@@ -78,8 +83,7 @@ trait Request
 
     /**
      * Check if the express meets the requirements.
-     *
-     * @return boolean.
+     * @return bool|false|int
      */
     protected function checkExpressRequirements()
     {
@@ -89,8 +93,7 @@ trait Request
 
     /**
      * Check if the tracking number meets the requirements.
-     *
-     * @return boolean.
+     * @return bool|false|int
      */
     protected function checkNumberRequirements()
     {
@@ -100,8 +103,7 @@ trait Request
 
     /**
      * Check if the tracking number meets the requirements.
-     *
-     * @return boolean.
+     * @return bool|false|int
      */
     protected function checkLangRequirements()
     {
@@ -111,8 +113,8 @@ trait Request
 
     /**
      * Check if the tracking number and express meets the requirements.
-     *
-     * @return boolean.
+     * @param $params
+     * @return bool|int
      */
     protected function checkParamsRequirements($params)
     {
@@ -127,8 +129,8 @@ trait Request
 
     /**
      * Check if the data meets the requirements.
-     *
-     * @return mixed response.
+     * @param $data
+     * @return false|mixed|string
      */
     protected function checkSendApi($data)
     {
@@ -145,8 +147,7 @@ trait Request
 
     /**
      * gets the header to be used for requests.
-     *
-     * @return array $header.
+     * @return string[]
      */
     protected function getRequestHeader()
     {
@@ -163,8 +164,7 @@ trait Request
 
     /**
      * Check if the air number meets the requirements.
-     *
-     * @return boolean.
+     * @return bool|false|int
      */
     public function checkAirNumberRequirements()
     {
@@ -174,8 +174,9 @@ trait Request
 
     /**
      * send api request.
-     *
-     * @return mixed
+     * @param array $params
+     * @param string $method
+     * @return mixed|string
      */
     protected function sendApiRequest($params = [], $method = "GET")
     {
@@ -187,8 +188,10 @@ trait Request
 
     /**
      * error params request.
-     *
-     * @return mixed response.
+     * @param $code
+     * @param string $message
+     * @param array $data
+     * @return false|string
      */
     protected function errorResponse($code, $message = "", $data = [])
     {
@@ -216,9 +219,8 @@ trait Request
 
     /**
      * send api request.
-     *
      * @param string $method
-     * @return mixed $response.
+     * @return bool|string
      */
     protected function send($method = "GET")
     {

@@ -1,8 +1,7 @@
 <?php
 
-namespace Tracking;
+namespace SeetoLight\Tracking\Tracking;
 
-use Tracking\ApiInterface;
 
 class Api implements ApiInterface
 {
@@ -20,7 +19,8 @@ class Api implements ApiInterface
     }
 
     /**
-     * @return string The complete url.
+     * @param null $path
+     * @return string  The complete url.
      */
     protected function getBaseUrl($path = null)
     {
@@ -37,8 +37,7 @@ class Api implements ApiInterface
 
     /**
      * Sets the API key to be used for requests.
-     *
-     * @param string $apiKey
+     * @param $apiKey
      */
     private function setApiKey($apiKey)
     {
@@ -47,8 +46,7 @@ class Api implements ApiInterface
 
     /**
      * Sets the client id to be used for requests.
-     *
-     * @param string $clientId
+     * @param $clientId
      */
     public function setClientId($clientId)
     {
